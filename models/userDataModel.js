@@ -2,14 +2,11 @@ const mongoose = require("mongoose");
 
 const signUpSchema = new mongoose.Schema(
   {
-    firstName: {
+    username: {
       type: String,
       require: true,
     },
-    lastName: {
-      type: String,
-      require: true,
-    },
+    
     email: {
       type: String,
       require: true,
