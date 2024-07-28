@@ -24,16 +24,9 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ error: "Invalid password" });
     }
 
-    const token = jwt.sign(
-      {
-        id: existingUser._id,
-        email: existingUser.email,
-      },
-      process.env.JWT_SECRET,
-      { expiresIn: "1h" }
-    );
+ 
 
-    res.status(200).json({ token });
+    res.status(200).json({ user:existingUser });
   } catch (err) {
     console.error("Error in /api/login route:", err);
     res.status(500).json({ error: err.message });
