@@ -22,13 +22,18 @@ mongoose
 // Import routes
 const signupRoute = require("./routes/signup.route");
 
-// Use routes
+// Use signup routes
 app.use("/api/signup", signupRoute);
 
 const signinRoute = require("./routes/login.route");
 
-// Use routes
+// Use login routes
 app.use("/api/login", signinRoute);
+
+// use blogpost route
+const blogpostRoute = require("./routes/blogpost.route");
+app.use("/api/blogpost",blogpostRoute)
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
