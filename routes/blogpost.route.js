@@ -23,4 +23,14 @@ router.post('/', async (req, res) => {
     }
 });
 
+// Route to get all blog posts
+router.get('/AllPosts', async (req, res) => {
+    try {
+        const allPosts = await blogModel.find();
+        res.status(200).json(allPosts);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 module.exports = router;
