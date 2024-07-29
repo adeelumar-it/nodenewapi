@@ -5,13 +5,14 @@ const bcrypt = require('bcryptjs');
 
 // Route to create a new user
 router.post('/', async (req, res) => {
-    const { userid, blogtitle, blogdescription, blgIMG_64, publishdate } = req.body;
+    const { userid, blogtitle, blogdescription, blgIMG_64,cateGory, publishdate } = req.body;
 
     const newPost = new blogModel({
         userid,
         blogtitle,
         blogdescription,
         blgIMG_64,
+        cateGory,
         publishdate,
     });
 

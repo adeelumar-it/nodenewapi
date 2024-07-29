@@ -18,6 +18,10 @@ const BlogPostSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  cateGory: {
+    type: String,
+    required: true,
+  },
   publishdate: {
     type: String,
     required: true,
