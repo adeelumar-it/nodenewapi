@@ -5,16 +5,11 @@ require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 4000;
-const corsOptions = {
-  origin: "https://next-js-test-tau-six.vercel.app",
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
 
 // Middleware to parse JSON
 app.use(express.json());
 
-//allow cors///
-
+// Allow all CORS requests
 app.use(cors());
 
 // Connect to MongoDB
@@ -34,11 +29,10 @@ const signinRoute = require("./routes/login.route");
 // Use login routes
 app.use("/api/login", signinRoute);
 
-// use blogpost route
+// Use blogpost route
 const blogpostRoute = require("./routes/blogpost.route");
-app.use("/api/blogpost",blogpostRoute)
+app.use("/api/blogpost", blogpostRoute);
 
-app.use(cors(corsOptions));
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
