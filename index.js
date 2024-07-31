@@ -6,7 +6,7 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 4000;
 const corsOptions = {
-  origin: "https://nodenewapi.vercel.app",
+  origin: "https://next-js-test-tau-six.vercel.app",
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
