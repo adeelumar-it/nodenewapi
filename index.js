@@ -20,16 +20,11 @@ mongoose
 
 // Import routes
 const signupRoute = require("./routes/signup.route");
-
-// Use signup routes
 app.use("/api/signup", signupRoute);
 
 const signinRoute = require("./routes/login.route");
-
-// Use login routes
 app.use("/api/login", signinRoute);
 
-// Use blogpost route
 const blogpostRoute = require("./routes/blogpost.route");
 app.use("/api/blogpost", blogpostRoute);
 
