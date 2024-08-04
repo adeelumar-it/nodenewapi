@@ -11,19 +11,10 @@ app.use(express.json({ limit: '50mb' })); // Increase the limit as needed
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // Allow CORS requests from specific origins
-const allowedOrigins = ["http://localhost:3000", "https://next-js-test-tau-six.vercel.app"];
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'x-requested-with']
-}));
+const allowedOrigins = {
+  origin: "http://localhost:3000"
+};
+app.use(cors(allowedOrigins));
 
 // Enable preflight requests for all routes
 app.options('*', cors());
