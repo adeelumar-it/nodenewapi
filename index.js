@@ -12,7 +12,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // Allow CORS requests from specific origins
 const allowedOrigins = {
-  origin: "http://localhost:3000"
+  origin: "https://next-js-test-tau-six.vercel.app"
 };
 app.use(cors(allowedOrigins));
 
