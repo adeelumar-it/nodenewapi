@@ -6,15 +6,31 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 4000;
 
-// Middleware to parse JSON
-app.use(express.json());
+// Middleware to parse JSON and URL-encoded data with increased limit
+app.use(express.json({ limit: '50mb' })); // Increase the limit as needed
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-// Allow all CORS requests
-app.use(cors());
+// Allow CORS requests from specific origins
+const allowedOrigins = ["http://localhost:3000", "https://example.com"];
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-requested-with']
+}));
+
+// Enable preflight requests for all routes
+app.options('*', cors());
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("MongoDB connected..."))
   .catch((err) => console.log(err));
 
