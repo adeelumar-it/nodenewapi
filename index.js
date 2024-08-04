@@ -10,10 +10,7 @@ const port = process.env.PORT || 4000;
 app.use(express.json({ limit: '50mb' })); // Increase the limit as needed
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-// Allow CORS requests from specific origins
-const allowedOrigins = {
-  origin: "https://next-js-test-tau-six.vercel.app"
-};
+
 app.use(cors(allowedOrigins));
 
 // Enable preflight requests for all routes
